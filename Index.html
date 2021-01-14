@@ -1,2 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+<head>
+<title>Projeto 2</title>
+</head>
+
+<body>
+<h1>Cotações de Moedas</h1>
+<label>Selecione a moeda:</label>
+<select id="cotacao">
+<option>USD</option>
+<option>CAD</option>
+<option>EURO</option>
+<option>BTC</option>
+</select><br><br>
+<input type="submit" value="Submit" onclick="validar()">
+<p>Valor da moeda em Real:</p>
+<div id="texto">...</div>
+</body>
+
+<script>
+function validar(){
+var cotacao = document.getElementById("cotacao").valeu;
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function(){
+if (this.readyState == 4 && this.status == 200) {
+var json = JSON.parse(this.responseText);
+document.getElementById("texto").innerHTML = json.USD.high +
+{
+    USD: {
+        code: "USD",
+        codein: "BRL",
+        name: "Dólar Comercial",
+        high: "3,8906",
+        low: "3,8596",
+        varBid: "-0,0138",
+        pctChange: "-0,36",
+        bid: "3,8660",
+        ask: "3,8680",
+        timestamp: "1555360069",
+        create_date: "2019-04-15 17:27:50"
+    }
+}
+}
+}
+xhttp.open("GET","https://economia.awesomeapi.com.br/json/all" ,true,)
+xhttp.send();
+
+}
+</script>
