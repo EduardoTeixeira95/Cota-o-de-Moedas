@@ -8,10 +8,10 @@
 <h1>Cotações de Moedas</h1>
 <label>Selecione a moeda:</label>
 <select id="cotacao">
-<option>USD</option>
-<option>CAD</option>
-<option>EURO</option>
-<option>BTC</option>
+<option id="USD">USD</option>
+<option id="CAD">CAD</option>
+<option id="EUR">EURO</option>
+<option id="BTC">BTC</option>
 </select><br><br>
 <input type="submit" value="Submit" onclick="validar()">
 <p>Valor da moeda em Real:</p>
@@ -25,8 +25,9 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
 if (this.readyState == 4 && this.status == 200) {
 var json = JSON.parse(this.responseText);
-document.getElementById("texto").innerHTML = "R$ " + json.USD.high
-
+if (cotacao <= CAD){
+document.getElementById("texto").innerHTML = "R$ " + json.CAD.high
+}
 }
 }
 
