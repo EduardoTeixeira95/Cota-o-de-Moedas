@@ -8,10 +8,10 @@
 <h1>Cotações de Moedas</h1>
 <label>Selecione a moeda:</label>
 <select id="cotacao">
-<option id="USD">USD</option>
-<option id="CAD">CAD</option>
-<option id="EUR">EURO</option>
-<option id="BTC">BTC</option>
+<option value="USD">USD</option>
+<option value="CAD">CAD</option>
+<option value="EUR">EURO</option>
+<option value="BTC">BTC</option>
 </select><br><br>
 <input type="submit" value="Submit" onclick="validar()">
 <p>Valor da moeda em Real:</p>
@@ -25,14 +25,28 @@ var xhttp = new XMLHttpRequest();
 xhttp.onreadystatechange = function(){
 if (this.readyState == 4 && this.status == 200) {
 var json = JSON.parse(this.responseText);
-if (cotacao <= CAD){
+if (cotacao == 'USD'){
+document.getElementById("texto").innerHTML = "R$ " + json.USD.high
+}
+if (cotacao == 'CAD'){
 document.getElementById("texto").innerHTML = "R$ " + json.CAD.high
 }
+if (cotacao == 'EUR'){
+document.getElementById("texto").innerHTML = "R$ " + json.EUR.high
+}
+if (cotacao == 'BTC'){
+document.getElementById("texto").innerHTML = "R$ " + json.BTC.high
 }
 }
-
+}
 xhttp.open("GET","https://economia.awesomeapi.com.br/all/" + cotacao + '-BRL',true,)
 xhttp.send();
 
 }
+
+// Neste exercício encontrei muita dificuldade pois estava declarando o option no Html como ID, pesquisando entendi que para retornar
+// valores eu deveria usar a tag "value". Só assim também descobri que era necessário utilizar == no IF e transformar o valor em string
+//para imprimir na tela
+
 </script>
+
